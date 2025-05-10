@@ -10,23 +10,53 @@
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
 default: &default
-  adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  socket: /tmp/mysql.sock
 
 development:
   <<: *default
-  database: protospace_42379_development
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
+  database: protospace-42379_development
+
+test:
+  <<: *default
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
+  database: protospace-42379_test
+
+production:
+  <<: *default
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
+
+#2025/05/11 1:14:15 コメントアウト　ここから----
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   username: root
+#   password:
+#   socket: /tmp/mysql.sock
+
+# development:
+#   <<: *default
+#   database: protospace_42379_development
+#---ここまで　コメントアウト
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: protospace_42379_test
+
+#2025/05/11 1:14:15 コメントアウト　ここから----
+# test:
+#   <<: *default
+#   database: protospace_42379_test
+#---ここまで　コメントアウト
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -48,8 +78,11 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: protospace_42379_production
-  username: protospace_42379
-  password: <%= ENV["PROTOSPACE_42379_DATABASE_PASSWORD"] %>
+
+#2025/05/11 1:14:15 コメントアウト　ここから----
+# production:
+#   <<: *default
+#   database: protospace_42379_production
+#   username: protospace_42379
+#   password: <%= ENV["PROTOSPACE_42379_DATABASE_PASSWORD"] %>
+#---ここまで　コメントアウト
